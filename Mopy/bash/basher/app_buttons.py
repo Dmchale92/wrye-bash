@@ -332,6 +332,16 @@ class _Mods_Fo4ViewExpert(BoolLink):
     """Toggle Fo4Edit expert mode (when launched via Bash)."""
     text, key = _(u'FO4Edit Expert'), 'fo4View.iKnowWhatImDoing'
 
+class _Mods_Fo3ViewExpert(BoolLink):
+    """Toggle Fo3Edit expert mode (when launched via Bash)."""
+    text, key = _(u'Fo3Edit Expert'), 'fo3View.iKnowWhatImDoing'
+
+#------------------------------------------------------------------------------
+class _Mods_FnvViewExpert(BoolLink):
+    """Toggle FnvEdit expert mode (when launched via Bash)."""
+    text, key = _(u'FnvEdit Expert'), 'fnvView.iKnowWhatImDoing'
+
+#------------------------------------------------------------------------------
 class _Mods_Tes4ViewExpert(BoolLink):
     """Toggle Tes4Edit expert mode (when launched via Bash)."""
     text, key = _(u'Tes4Edit Expert'), 'tes4View.iKnowWhatImDoing'
@@ -385,6 +395,10 @@ class App_Tes4View(App_Button):
             self.mainMenu.append(_Mods_Tes4ViewExpert())
         elif bush.game.fsName == 'Fallout4':
             self.mainMenu.append(_Mods_Fo4ViewExpert())
+        elif bush.game.fsName == 'Fallout3':
+            self.mainMenu.append(_Mods_Fo3ViewExpert())
+        elif bush.game.fsName == 'FalloutNV':
+            self.mainMenu.append(_Mods_FnvViewExpert())
 
     def IsPresent(self):
         if self.exePath in bosh.undefinedPaths or not self.exePath.exists():
@@ -409,6 +423,12 @@ class App_Tes4View(App_Button):
                 extraArgs.append(u'-IKnowWhatImDoing')
         if bush.game.fsName == 'Fallout4':
             if bass.settings['fo4View.iKnowWhatImDoing']:
+                extraArgs.append(u'-IKnowWhatImDoing')
+        if bush.game.fsName == 'Fallout3':
+            if bosh.settings['fo3View.iKnowWhatImDoing']:
+                extraArgs.append(u'-IKnowWhatImDoing')
+        if bush.game.fsName == 'FalloutNV':
+            if bosh.settings['fnvView.iKnowWhatImDoing']:
                 extraArgs.append(u'-IKnowWhatImDoing')
         self.extraArgs = tuple(extraArgs)
         super(App_Tes4View, self).Execute()
