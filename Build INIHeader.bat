@@ -3,7 +3,7 @@ title Wrye Bash Make INI Header Generator
 echo.
 echo.
 
-"C:\Python27\python.exe" "scripts\mkiniheader.py" "306.0.24"
+"C:\Python27\python.exe" "scripts\mkiniheader.py" "307.0.8"
 
 echo.
 echo.
