@@ -193,9 +193,9 @@ class MelCTDAHandler(MelStructs):
         """Include self if has fids."""
         formElements.add(self)
 
-    def loadData(self, record, ins, rec_type, size, readId):
+    def loadData(self, record, ins, sub_type, size, readId):
         """Reads data from ins into record attribute."""
-        if rec_type == 'CTDA':
+        if sub_type == 'CTDA':
             if size != 32 and size != 28 and size != 24 and size != 20:
                 raise ModSizeError(ins.inName,readId,32,size,False)
         else:

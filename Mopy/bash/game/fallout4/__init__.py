@@ -371,24 +371,26 @@ class esp:
         ]
 
     #--Top types in Skyrim order.
-    topTypes = ['GMST', 'KYWD', 'LCRT', 'AACT', 'TRNS', 'CMPO', 'TXST', 'MICN', 'GLOB',
-                'DMGT', 'CLAS', 'FACT', 'HDPT', 'EYES', 'RACE', 'SOUN', 'ASPC', 'SKIL',
-                'MGEF', 'SCPT', 'LTEX', 'ENCH', 'SPEL', 'SCRL', 'ACTI', 'TACT', 'ARMO',
-                'BOOK', 'CONT', 'DOOR', 'INGR', 'LIGH', 'MISC', 'STAT', 'SCOL', 'MSTT',
-                'GRAS', 'TREE', 'FLOR', 'FURN', 'WEAP', 'AMMO', 'NPC_', 'LVLN', 'KEYM',
-                'ALCH', 'IDLM', 'NOTE', 'PROJ', 'HAZD', 'BNDS', 'SLGM', 'TERM', 'LVLI',
-                'WTHR', 'CLMT', 'SPGD', 'RFCT', 'REGN', 'NAVI', 'CELL', 'REFR', 'ACHR',
-                'PMIS', 'PARW', 'PGRE', 'PBEA', 'PFLA', 'PCON', 'PBAR', 'PHZD', 'WRLD',
-                'LAND', 'NAVM', 'TLOD', 'DIAL', 'INFO', 'QUST', 'IDLE', 'PACK', 'CSTY',
-                'LSCR', 'LVSP', 'ANIO', 'WATR', 'EFSH', 'TOFT', 'EXPL', 'DEBR', 'IMGS',
-                'IMAD', 'FLST', 'PERK', 'BPTD', 'ADDN', 'AVIF', 'CAMS', 'CPTH', 'VTYP',
-                'MATT', 'IPCT', 'IPDS', 'ARMA', 'ECZN', 'LCTN', 'MESG', 'RGDL', 'DOBJ',
-                'DFOB', 'LGTM', 'MUSC', 'FSTP', 'FSTS', 'SMBN', 'SMQN', 'SMEN', 'DLBR',
-                'MUST', 'DLVW', 'WOOP', 'SHOU', 'EQUP', 'RELA', 'SCEN', 'ASTP', 'OTFT',
-                'ARTO', 'MATO', 'MOVT', 'SNDR', 'DUAL', 'SNCT', 'SOPM', 'COLL', 'CLFM',
-                'REVB', 'PKIN', 'RFGP', 'AMDL', 'LAYR', 'COBJ', 'OMOD', 'MSWP', 'ZOOM',
-                'INNR', 'KSSM', 'AECH', 'SCCO', 'AORU', 'SCSN', 'STAG', 'NOCM', 'LENS',
-                'LSPR', 'GDRY', 'OVIS',]
+    topTypes = ['GMST', 'KYWD', 'LCRT', 'AACT', 'TRNS', 'CMPO', 'TXST', 'MICN',
+                'GLOB', 'DMGT', 'CLAS', 'FACT', 'HDPT', 'EYES', 'RACE', 'SOUN',
+                'ASPC', 'SKIL', 'MGEF', 'SCPT', 'LTEX', 'ENCH', 'SPEL', 'SCRL',
+                'ACTI', 'TACT', 'ARMO', 'BOOK', 'CONT', 'DOOR', 'INGR', 'LIGH',
+                'MISC', 'STAT', 'SCOL', 'MSTT', 'GRAS', 'TREE', 'FLOR', 'FURN',
+                'WEAP', 'AMMO', 'NPC_', 'LVLN', 'KEYM', 'ALCH', 'IDLM', 'NOTE',
+                'PROJ', 'HAZD', 'BNDS', 'SLGM', 'TERM', 'LVLI', 'WTHR', 'CLMT',
+                'SPGD', 'RFCT', 'REGN', 'NAVI', 'CELL', 'REFR', 'ACHR', 'PMIS',
+                'PARW', 'PGRE', 'PBEA', 'PFLA', 'PCON', 'PBAR', 'PHZD', 'WRLD',
+                'LAND', 'NAVM', 'TLOD', 'DIAL', 'INFO', 'QUST', 'IDLE', 'PACK',
+                'CSTY', 'LSCR', 'LVSP', 'ANIO', 'WATR', 'EFSH', 'TOFT', 'EXPL',
+                'DEBR', 'IMGS', 'IMAD', 'FLST', 'PERK', 'BPTD', 'ADDN', 'AVIF',
+                'CAMS', 'CPTH', 'VTYP', 'MATT', 'IPCT', 'IPDS', 'ARMA', 'ECZN',
+                'LCTN', 'MESG', 'RGDL', 'DOBJ', 'DFOB', 'LGTM', 'MUSC', 'FSTP',
+                'FSTS', 'SMBN', 'SMQN', 'SMEN', 'DLBR', 'MUST', 'DLVW', 'WOOP',
+                'SHOU', 'EQUP', 'RELA', 'SCEN', 'ASTP', 'OTFT', 'ARTO', 'MATO',
+                'MOVT', 'SNDR', 'DUAL', 'SNCT', 'SOPM', 'COLL', 'CLFM', 'REVB',
+                'PKIN', 'RFGP', 'AMDL', 'LAYR', 'COBJ', 'OMOD', 'MSWP', 'ZOOM',
+                'INNR', 'KSSM', 'AECH', 'SCCO', 'AORU', 'SCSN', 'STAG', 'NOCM',
+                'LENS', 'LSPR', 'GDRY', 'OVIS', ]
 
     #--Dict mapping 'ignored' top types to un-ignored top types.
     topIgTypes = dict([
@@ -491,10 +493,11 @@ class RecordHeader(BaseRecordHeader):
 #------------------------------------------------------------------------------
 #--Mergeable record types
 mergeClasses = (
-        MreGmst, MreGlob, MreFact, MreLtex, MreEnch, MreGras, MreTree, MreClmt, MreRfct, MreAnio,
-        MreDebr, MreCpth, MreVtyp, MreIpds, MreEczn, MreDobj, MreMusc, MreFstp, MreFsts, MreSmen,
-        MreDlbr, MreDlvw, MreRela, MreAstp, MreOtft, MreMato, MreColl, MreClfm,
-    )
+    MreGmst, MreGlob, MreFact, MreLtex, MreEnch, MreGras, MreTree, MreClmt,
+    MreRfct, MreAnio, MreDebr, MreCpth, MreVtyp, MreIpds, MreEczn, MreDobj,
+    MreMusc, MreFstp, MreFsts, MreSmen, MreDlbr, MreDlvw, MreRela, MreAstp,
+    MreOtft, MreMato, MreColl, MreClfm,
+)
 
 #--Extra read classes: these record types will always be loaded, even if
 # patchers don't need them directly (for example, MGEF for magic effects info)
@@ -513,9 +516,10 @@ def init():
 
     #--Record Types
     brec.MreRecord.type_class = dict((x.classType,x) for x in (
-        MreGmst, MreGlob, MreFact, MreLtex, MreEnch, MreGras, MreTree, MreClmt, MreRfct, MreAnio,
-        MreDebr, MreCpth, MreVtyp, MreIpds, MreEczn, MreDobj, MreMusc, MreFstp, MreFsts, MreSmen,
-        MreDlbr, MreDlvw, MreRela, MreAstp, MreOtft, MreMato, MreColl, MreClfm,
+        MreGmst, MreGlob, MreFact, MreLtex, MreEnch, MreGras, MreTree, MreClmt,
+        MreRfct, MreAnio, MreDebr, MreCpth, MreVtyp, MreIpds, MreEczn, MreDobj,
+        MreMusc, MreFstp, MreFsts, MreSmen, MreDlbr, MreDlvw, MreRela, MreAstp,
+        MreOtft, MreMato, MreColl, MreClfm,
         ####### for debug
         MreHeader,
         ))
