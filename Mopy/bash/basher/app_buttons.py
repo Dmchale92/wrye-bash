@@ -328,28 +328,12 @@ class Tooldir_Button(App_Button):
         App_Button.__init__(self, bass.tooldirs[toolKey], images, tip, obseTip, obseArg, workingDir, toolKey, canHide)
 
 #------------------------------------------------------------------------------
-class _Mods_Fo4ViewExpert(BoolLink):
-    """Toggle Fo4Edit expert mode (when launched via Bash)."""
-    text, key = _(u'FO4Edit Expert'), 'fo4View.iKnowWhatImDoing'
+class _Mods_xEditExpert(BoolLink):
+    """Toggle xEdit expert mode (when launched via Bash)."""
 
-class _Mods_Fo3ViewExpert(BoolLink):
-    """Toggle Fo3Edit expert mode (when launched via Bash)."""
-    text, key = _(u'Fo3Edit Expert'), 'fo3View.iKnowWhatImDoing'
-
-#------------------------------------------------------------------------------
-class _Mods_FnvViewExpert(BoolLink):
-    """Toggle FnvEdit expert mode (when launched via Bash)."""
-    text, key = _(u'FnvEdit Expert'), 'fnvView.iKnowWhatImDoing'
-
-#------------------------------------------------------------------------------
-class _Mods_Tes4ViewExpert(BoolLink):
-    """Toggle Tes4Edit expert mode (when launched via Bash)."""
-    text, key = _(u'Tes4Edit Expert'), 'tes4View.iKnowWhatImDoing'
-
-#------------------------------------------------------------------------------
-class _Mods_Tes5ViewExpert(BoolLink):
-    """Toggle Tes5Edit expert mode (when launched via Bash)."""
-    text, key = _(u'Tes5Edit Expert'), 'tes5View.iKnowWhatImDoing'
+    def __init__(self):
+        super(_Mods_xEditExpert, self).__init__()
+        self.text, self.key = bush.game.xEdit_expert
 
 class App_Tes4View(App_Button):
     """Allow some extra args for Tes4View."""
@@ -389,16 +373,8 @@ class App_Tes4View(App_Button):
 #  or name ends with Trans.exe
     def __init__(self,*args,**kwdargs):
         App_Button.__init__(self,*args,**kwdargs)
-        if bush.game.fsName == 'Skyrim':
-            self.mainMenu.append(_Mods_Tes5ViewExpert())
-        elif bush.game.fsName == 'Oblivion' or bush.game.fsName == 'Nehrim':
-            self.mainMenu.append(_Mods_Tes4ViewExpert())
-        elif bush.game.fsName == 'Fallout4':
-            self.mainMenu.append(_Mods_Fo4ViewExpert())
-        elif bush.game.fsName == 'Fallout3':
-            self.mainMenu.append(_Mods_Fo3ViewExpert())
-        elif bush.game.fsName == 'FalloutNV':
-            self.mainMenu.append(_Mods_FnvViewExpert())
+        if bush.game.xEdit_expert:
+            self.mainMenu.append(_Mods_xEditExpert()) ##: else ?
 
     def IsPresent(self):
         if self.exePath in bosh.undefinedPaths or not self.exePath.exists():
@@ -415,21 +391,8 @@ class App_Tes4View(App_Button):
             extraArgs.append(u'-FixupPGRD')
         if balt.getKeyState_Shift():
             extraArgs.append(u'-skipbsa')
-        if bush.game.fsName == 'Oblivion' or bush.game.fsName == 'Nehrim':
-            if bass.settings['tes4View.iKnowWhatImDoing']:
-                extraArgs.append(u'-IKnowWhatImDoing')
-        if bush.game.fsName == 'Skyrim':
-            if bass.settings['tes5View.iKnowWhatImDoing']:
-                extraArgs.append(u'-IKnowWhatImDoing')
-        if bush.game.fsName == 'Fallout4':
-            if bass.settings['fo4View.iKnowWhatImDoing']:
-                extraArgs.append(u'-IKnowWhatImDoing')
-        if bush.game.fsName == 'Fallout3':
-            if bosh.settings['fo3View.iKnowWhatImDoing']:
-                extraArgs.append(u'-IKnowWhatImDoing')
-        if bush.game.fsName == 'FalloutNV':
-            if bosh.settings['fnvView.iKnowWhatImDoing']:
-                extraArgs.append(u'-IKnowWhatImDoing')
+        if bush.game.xEdit_expert and bass.settings[bush.game.xEdit_expert[1]]:
+            extraArgs.append(u'-IKnowWhatImDoing')
         self.extraArgs = tuple(extraArgs)
         super(App_Tes4View, self).Execute()
 
