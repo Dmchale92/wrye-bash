@@ -2062,7 +2062,8 @@ def countFilesInArchive(srcArch, listFilePath=None, recurse=False):
     if msg: raise StateError(msg) # consider using CalledProcessError
     # number of files is reported in the last line - example:
     #                                3534900       325332  75 files, 29 folders
-    return int(re.search(ur'(\d+)\s+files,\s+\d+\s+folders', line).group(1))
+    # in 7z 16.02 apparently the folders listing is omitted if 0
+    return int(re.search(ur'(\d+)\s+files(,\s+\d+\s+folders)?', line).group(1))
 
 def list_archive(archive, parse_archive_line, __reList=reListArchive):
     """Client is responsible for closing the file ! See uses for
