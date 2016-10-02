@@ -2322,7 +2322,7 @@ class MasterInfo:
         return self.__class__.__name__ + u"<" + repr(self.name) + u">"
 
 #------------------------------------------------------------------------------
-class _AFileInfo:
+class _AFileInfo(object):
     """Abstract File."""
     def __init__(self, parent_dir, name):
         self.dir = GPath(parent_dir)
@@ -3244,10 +3244,10 @@ class FileInfos(_DataStore):
     def move_info(self, fileName, destDir):
         """Moves member file to destDir. Will overwrite! The client is
         responsible for calling delete_Refresh of the data store."""
-        destDir.makedirs()
+        destDir.makedirs() ##: not needed moveTo does this
         srcPath = self[fileName].getPath()
         destPath = destDir.join(fileName)
-        srcPath.moveTo(destPath)
+        srcPath.moveTo(destPath)  ##: shellMove !!!
 
     #--Copy
     def copy_info(self, fileName, destDir, destName=empty_path, set_mtime=None):
