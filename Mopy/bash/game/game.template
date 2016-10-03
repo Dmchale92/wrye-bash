@@ -25,7 +25,6 @@
 """This a template to use for making new game types for bash.game"""
 
 # Imports ---------------------------------------------------------------------
-import re
 import struct
 from .constants import * # WIP
 from ... import brec

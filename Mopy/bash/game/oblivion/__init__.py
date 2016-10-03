@@ -25,7 +25,6 @@
 """This modules defines static data for use by bush, when
    TES IV: Oblivion is set at the active game."""
 
-import re
 import struct
 from .constants import *
 from ... import brec
@@ -65,11 +64,11 @@ nexusKey = 'bash.installers.openTesNexus.continue'
 
 #--Construction Set information
 class cs:
-    shortName = u'TESCS'             # Abbreviated name
-    longName = u'Construction Set'   # Full name
-    exe = u'TESConstructionSet.exe'  # Executable to run
-    seArgs = u'-editor'              # Argument to pass to the SE to load the CS
-    imageName = u'tescs%s.png'       # Image name template for the status bar
+    shortName = u'TESCS'            # Abbreviated name
+    longName = u'Construction Set'  # Full name
+    exe = u'TESConstructionSet.exe' # Executable to run
+    seArgs = u'-editor'             # Argument to pass to the SE to load the CS
+    imageName = u'tescs%s.png'      # Image name template for the status bar
 
 #--Script Extender information
 class se:
@@ -219,8 +218,6 @@ masterFiles = [
     u'Oblivion.esm',
     u'Nehrim.esm',
     ]
-
-namesPatcherMaster = re.compile(ur"^Oblivion.esm$",re.I|re.U)
 
 #The pickle file for this game. Holds encoded GMST IDs from the big list below.
 pklfile = ur'bash\db\Oblivion_ids.pkl'
