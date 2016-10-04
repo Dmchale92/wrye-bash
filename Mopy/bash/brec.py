@@ -27,6 +27,7 @@ import zlib
 import StringIO
 import os
 import struct
+import sys
 import copy
 import cPickle
 from operator import attrgetter
@@ -283,12 +284,19 @@ class ModReader:
         return [decode(x,bolt.pluginEncoding,avoidEncodings=('utf8','utf-8')) for x in
                 self.read(size,recType).rstrip(null1).split(null1)]
 
-    def unpack(self,format,size,recType='----'):
+    def unpack(self, fmt, size, recType='----', __unpack=struct.unpack):
         """Read file and unpack according to struct format."""
-        endPos = self.ins.tell() + size
-        if endPos > self.size:
-            raise ModReadError(self.inName,recType,endPos,self.size)
-        return struct.unpack(format,self.ins.read(size))
+        # endPos = self.ins.tell() + size
+        # if endPos > self.size:
+        #     raise ModReadError(self.inName,recType,endPos,self.size)
+        data_read = self.ins.read(size)
+        try:
+            return __unpack(fmt, data_read)
+        except struct.error:
+            raise ModError, (self.inName.s, u'Error unpacking record type: %s'
+                    u'\nEither end of stream reached or malformed data\n'
+                    u'expected format:%s\ndata read:%r)' % (
+                recType, fmt, data_read)), sys.exc_info()[2]
 
     def unpackRef(self,recType='----'):
         """Read a ref (fid)."""
