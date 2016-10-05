@@ -22,15 +22,13 @@ import os
 import _winreg
 from collections import OrderedDict
 
-sys.path.append('../Mopy/bash')
+sys.path.append('../Mopy/bash/compiled')
 
-import loot
-
-lootDir = u'../Mopy/bash/compiled'
+import loot_api
 
 games_info = OrderedDict([(u'Oblivion', None), (u'Skyrim', None),
                           (u'Fallout3', None), (u'FalloutNV', None),
-                          # (u'Fallout4', None),
+                          (u'Fallout4', None),
                           ])
 
 # Detect games.
@@ -58,19 +56,14 @@ for g, app_dir in games_info.iteritems():
         games_info[g] = (
             app_dir, os.path.join(localAppData, g, 'masterlist.yaml'))
 
-
-# Load the LOOT API.
-loot.Init(lootDir)
-if loot.LootApi:
-    print u'Loaded the LOOT API from "%s", version %s.' % (lootDir, loot.version)
-else:
-    raise Exception("Couldn't load LOOT API.")
-
+print u'Loaded the LOOT API v%s using wrapper version %s' % (loot_api.Version.string(), loot_api.WrapperVersion.string())
 
 loot_codes = dict(zip(games_info.keys(), (
-    loot.LOOT_GAME_TES4, loot.LOOT_GAME_TES5, loot.LOOT_GAME_FO3,
-    loot.LOOT_GAME_FONV,
-    # loot.LOOT_GAME_FO4,
+    loot_api.GameType.tes4,
+    loot_api.GameType.tes5,
+    loot_api.GameType.fo3,
+    loot_api.GameType.fonv,
+    loot_api.GameType.fo4,
 )))
 
 for game, info in games_info.iteritems():
@@ -79,9 +72,9 @@ for game, info in games_info.iteritems():
     taglistDir = u'../Mopy/Bash Patches/%s/taglist.yaml' % game
     # taglistDir = u'../%s - taglist.yaml' % game
     if os.path.exists(info[1]):
-        lootDb = loot.LootDb(info[0], loot_codes[game])
-        lootDb.PlainLoad(info[1])
-        lootDb.DumpMinimal(taglistDir, True)
+        lootDb = loot_api.create_database(loot_codes[game], info[0])
+        lootDb.load_lists(info[1])
+        lootDb.write_minimal_list(taglistDir, True)
         print u'%s masterlist converted.' % game
     else:
         print u'Error: %s masterlist not found.' % game
